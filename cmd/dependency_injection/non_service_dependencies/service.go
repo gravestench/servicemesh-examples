@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log/slog"
 	"math/rand"
 	"time"
 
 	"github.com/google/uuid"
 	"github.com/gravestench/runtime/pkg"
+	"github.com/gravestench/servicemesh"
 )
 
 func newServiceWithAsyncDependencyResolution() *Service {
@@ -48,7 +50,7 @@ func (s *Service) ResolveDependencies(_ pkg.IsRuntime) {
 	// to call Init unless until we have resolved our deps ourselves.
 }
 
-func (s *Service) Init(r servicemesh.Runtime) {
+func (s *Service) Init(mesh servicemesh.M) {
 	return
 }
 

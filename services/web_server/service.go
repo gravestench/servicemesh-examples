@@ -1,10 +1,13 @@
 package web_server
 
 import (
+	"log/slog"
 	"net/http"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/web_router"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/web_router"
 )
 
 type Service struct {

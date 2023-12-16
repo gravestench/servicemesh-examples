@@ -10,7 +10,7 @@ import (
 	htgotts "github.com/hegedustibor/htgo-tts"
 	"github.com/hegedustibor/htgo-tts/handlers"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 type Service struct {

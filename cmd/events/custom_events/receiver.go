@@ -1,5 +1,11 @@
 package main
 
+import (
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
+)
+
 type receiver struct {
 	logger *slog.Logger
 }
@@ -13,8 +19,8 @@ func (r *receiver) Logger() *slog.Logger {
 }
 
 func (r *receiver) Init(mesh servicemesh.M) {
-	rt.Events().On("test", func(args ...any) {
-		r.logger.Info().Msgf("event 'test' recieved, args are: %+v", args)
+	mesh.Events().On("test", func(args ...any) {
+		r.logger.Info("event received", "event", "test", "args", args)
 	})
 }
 

@@ -1,16 +1,18 @@
 package main
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/text_to_speech"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/text_to_speech"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
-	rt.Add(&config_file.Service{RootDirectory: "~/.config/runtime/example/text_to_speech"})
-	rt.Add(&text_to_speech.Service{})
-	rt.Add(&exampleServiceThatUsesTts{})
+	mesh.Add(&config_file.Service{RootDirectory: "~/.config/servicemesh/examples/text_to_speech"})
+	mesh.Add(&text_to_speech.Service{})
+	mesh.Add(&exampleServiceThatUsesTts{})
 
-	rt.Run()
+	mesh.Run()
 }

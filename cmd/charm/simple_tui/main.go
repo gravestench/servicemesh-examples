@@ -2,20 +2,22 @@ package main
 
 import (
 	"os"
+
+	"github.com/gravestench/servicemesh"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
 	logFile, err := os.OpenFile("/tmp/log.out", os.O_RDWR|os.O_CREATE, 0644)
 	if err != nil {
 		panic(err)
 	}
 
-	rt.SetLogDestination(logFile)
+	mesh.SetLogDestination(logFile)
 
-	rt.Add(&bubbleteaService{})
-	rt.Add(&filePickerService{})
+	mesh.Add(&bubbleteaService{})
+	mesh.Add(&filePickerService{})
 
-	rt.Run()
+	mesh.Run()
 }

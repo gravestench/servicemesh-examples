@@ -4,7 +4,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/gravestench/servicesmesh-examples/services/text_to_speech"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/text_to_speech"
 )
 
 type exampleServiceThatUsesTts struct {
@@ -16,7 +18,7 @@ func (s *exampleServiceThatUsesTts) DependenciesResolved() bool {
 }
 
 func (s *exampleServiceThatUsesTts) ResolveDependencies(mesh servicemesh.M) {
-	for _, service := range servicemesh.Services() {
+	for _, service := range mesh.Services() {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			s.tts = candidate
 		}

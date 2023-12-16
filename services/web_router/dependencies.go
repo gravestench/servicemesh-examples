@@ -1,7 +1,9 @@
 package web_router
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func (s *Service) DependenciesResolved() bool {
@@ -13,7 +15,7 @@ func (s *Service) DependenciesResolved() bool {
 }
 
 func (s *Service) ResolveDependencies(mesh servicemesh.M) {
-	for _, other := range rt.Services() {
+	for _, other := range mesh.Services() {
 		if cfg, ok := other.(config_file.Manager); ok {
 			s.cfgManager = cfg
 		}

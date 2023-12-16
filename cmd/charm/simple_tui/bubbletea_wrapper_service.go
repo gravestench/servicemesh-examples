@@ -6,6 +6,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/gravestench/runtime/pkg/events"
+	"github.com/gravestench/servicemesh"
 )
 
 type serviceWithModel interface {
@@ -20,10 +21,10 @@ type bubbleteaService struct {
 func (b *bubbleteaService) Init(mesh servicemesh.M) {
 	go b.runLoop()
 
-	b.bindExisting(rt)
+	b.bindExisting(mesh)
 
-	rt.Events().On(events.EventServiceAdded, func(...any) {
-		b.bindExisting(rt)
+	mesh.Events().On(events.EventServiceAdded, func(...any) {
+		b.bindExisting(mesh)
 	})
 }
 
@@ -42,7 +43,7 @@ func (b *bubbleteaService) runLoop() {
 func (b *bubbleteaService) bindExisting(mesh servicemesh.M) {
 	var models []tea.Model
 
-	for _, service := range rt.Services() {
+	for _, service := range mesh.Services() {
 		if candidate, ok := service.(serviceWithModel); ok {
 			models = append(models, candidate.Model())
 		}

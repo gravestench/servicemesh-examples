@@ -1,12 +1,14 @@
 package web_router
 
 import (
+	"log/slog"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gravestench/servicemesh"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/web_router/middleware/static_assets"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/web_router/middleware/static_assets"
 )
 
 type Service struct {
@@ -34,9 +36,9 @@ func (s *Service) Logger() *slog.Logger {
 
 func (s *Service) Init(mesh servicemesh.M) {
 	gin.SetMode("release")
-	rt.Add(&static_assets.Middleware{})
+	mesh.Add(&static_assets.Middleware{})
 	s.root = gin.New()
-	go s.beginDynamicRouteBinding(rt)
+	go s.beginDynamicRouteBinding(mesh)
 }
 
 func (s *Service) Name() string {

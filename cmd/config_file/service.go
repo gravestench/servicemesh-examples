@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 var _ interface {
-	servicemesh.S
+	servicemesh.Service
 	servicemesh.HasLogger
 	servicemesh.HasDependencies
 } = &serviceThatUsesConfigManager{}
@@ -16,7 +20,7 @@ type serviceThatUsesConfigManager struct {
 }
 
 func (s *serviceThatUsesConfigManager) ResolveDependencies(mesh servicemesh.M) {
-	for _, service := range rt.Services() {
+	for _, service := range mesh.Services() {
 		if instance, ok := service.(config_file.Manager); ok {
 			s.configManager = instance
 		}
@@ -27,10 +31,11 @@ func (s *serviceThatUsesConfigManager) DependenciesResolved() bool {
 	return s.configManager != nil
 }
 
-func (s *serviceThatUsesConfigManager) Init(r servicemesh.R) {
+func (s *serviceThatUsesConfigManager) Init(mesh servicemesh.M) {
 	cfg, err := s.configManager.GetConfig("test.json")
 	if err != nil {
-		s.log.Fatal().Msgf("couldnt load example config file", "error", err)
+		s.log.Error("couldn't load example config file", "error", err)
+		panic(err)
 	}
 
 	group := cfg.Group("foo")

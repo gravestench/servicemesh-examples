@@ -1,16 +1,20 @@
 package main
 
+import (
+	"github.com/gravestench/servicemesh"
+)
+
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
 	// each service has a dependency that is not
 	// actually resolved through the runtime but by
 	// some other means (that part is up to you).
-	rt.Add(newServiceWithAsyncDependencyResolution())
-	rt.Add(newServiceWithAsyncDependencyResolution())
-	rt.Add(newServiceWithAsyncDependencyResolution())
-	rt.Add(newServiceWithAsyncDependencyResolution())
-	rt.Add(newServiceWithAsyncDependencyResolution())
+	mesh.Add(newServiceWithAsyncDependencyResolution())
+	mesh.Add(newServiceWithAsyncDependencyResolution())
+	mesh.Add(newServiceWithAsyncDependencyResolution())
+	mesh.Add(newServiceWithAsyncDependencyResolution())
+	mesh.Add(newServiceWithAsyncDependencyResolution())
 
-	rt.Run()
+	mesh.Run()
 }

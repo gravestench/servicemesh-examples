@@ -19,6 +19,10 @@ func (s *Service) initRenderer() {
 	screenWidth := windowSettings.GetInt(keyScreenWidth)
 	screenHeight := windowSettings.GetInt(keyScreenHeight)
 
+	rl.SetTraceLogCallback(func(_ int, message string) {
+		s.Logger().Info(message)
+	})
+
 	// this requires servicemesh.Run() to be passed into mainthread.Run
 	mainthread.Call(func() {
 		rl.SetTargetFPS(60)

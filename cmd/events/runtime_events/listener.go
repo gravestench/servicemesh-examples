@@ -1,5 +1,11 @@
 package main
 
+import (
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
+)
+
 type listensForNewServices struct {
 	logger *slog.Logger
 }
@@ -37,5 +43,5 @@ func (s *listensForNewServices) OnServiceAdded(args ...interface{}) {
 		return
 	}
 
-	s.logger.Info().Msgf("found another service %q", service.Name())
+	s.logger.Info("found a service", "found service", service.Name())
 }

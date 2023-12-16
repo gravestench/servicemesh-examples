@@ -1,5 +1,11 @@
 package serviceB
 
+import (
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
+)
+
 type hasA interface{ A() string }
 
 func New(name string) *Service {
@@ -19,8 +25,8 @@ func (s *Service) B() string {
 	return "this message came from ServiceB"
 }
 
-func (s *Service) Init(r servicemesh.Runtime) {
-	s.log.Info().Msgf("calling A(): %s", s.dependency.A())
+func (s *Service) Init(mesh servicemesh.M) {
+	s.log.Info("calling A()", "message from A", s.dependency.A())
 	return
 }
 
@@ -43,7 +49,7 @@ func (s *Service) DependenciesResolved() bool {
 func (s *Service) ResolveDependencies(mesh servicemesh.M) {
 	// here, we iterate over all services from the runtime
 	// and check if the service implements something we need.
-	for _, service := range rt.Services() {
+	for _, service := range mesh.Services() {
 		if a, ok := service.(hasA); ok {
 			s.dependency = a // If we find our hasA, we assign it!
 		}

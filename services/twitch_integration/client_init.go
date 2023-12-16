@@ -12,11 +12,12 @@ import (
 )
 
 func (s *Service) setupClient() {
-	s.logger.Info().Msg("initializing twitch integration")
+	s.logger.Info("initializing twitch integration")
 
 	cfg, err := s.Config()
 	if err != nil {
-		s.logger.Fatal().Msgf("getting config", "error", err)
+		s.logger.Error("getting config", "error", err)
+		panic(err)
 	}
 
 	creds := cfg.Group("credentials")
@@ -35,13 +36,14 @@ func (s *Service) setupClient() {
 	go func() {
 		err = s.twitchIrcClient.Connect()
 		if err != nil {
-			s.logger.Warn().Msg("get your oauth token here: https://twitchapps.com/tmi/")
+			s.logger.Warn("get your oauth token here: https://twitchapps.com/tmi/")
 
 			cfgFilePath := filepath.Join(s.cfgManager.ConfigDirectory(), s.ConfigFilePath())
 			_ = s.cfgManager.SaveConfig(s.ConfigFilePath())
-			s.logger.Warn().Msgf("edit your config file: %s", cfgFilePath)
+			s.logger.Warn("edit your config file", "path", cfgFilePath)
 
-			s.logger.Fatal().Msgf("could not connect", "error", err)
+			s.logger.Error("could not connect", "error", err)
+			panic(err)
 		}
 	}()
 }
@@ -55,7 +57,8 @@ func (s *Service) getToken(clientID, clientSecret string) string {
 
 	token, err := oauth2Config.Token(context.Background())
 	if err != nil {
-		s.logger.Fatal().Msgf("getting access token", "error", err)
+		s.logger.Error("getting access token", "error", err)
+		panic(err)
 	}
 
 	return token.AccessToken

@@ -1,17 +1,19 @@
 package main
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 	cfgManager := &config_file.Service{}
 
-	rt.Add(cfgManager)
+	mesh.Add(cfgManager)
 
 	// This service has a dependency on the config manager
-	rt.Add(&serviceThatUsesConfigManager{})
+	mesh.Add(&serviceThatUsesConfigManager{})
 
-	rt.Run()
+	mesh.Run()
 }

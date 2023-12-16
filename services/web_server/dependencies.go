@@ -1,8 +1,10 @@
 package web_server
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/web_router"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/web_router"
 )
 
 func (s *Service) DependenciesResolved() bool {
@@ -18,7 +20,7 @@ func (s *Service) DependenciesResolved() bool {
 }
 
 func (s *Service) ResolveDependencies(mesh servicemesh.M) {
-	for _, other := range servicemesh.Services() {
+	for _, other := range mesh.Services() {
 		if router, ok := other.(web_router.IsWebRouter); ok {
 			if router.RouteRoot() != nil {
 				s.router = router

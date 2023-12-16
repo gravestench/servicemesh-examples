@@ -3,8 +3,9 @@ package text_to_speech
 import (
 	"fmt"
 	"path/filepath"
+	"time"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func (s *Service) ConfigFilePath() string {
@@ -21,6 +22,10 @@ func (s *Service) Config() (*config_file.Config, error) {
 
 func (s *Service) DefaultConfig() (cfg config_file.Config) {
 	g := cfg.Group("Text to speech")
+
+	for s.cfgManager == nil {
+		time.Sleep(time.Second)
+	}
 
 	cfgDir := s.cfgManager.ConfigDirectory()
 	g.SetDefault("directory", filepath.Join(cfgDir, "audio_files"))

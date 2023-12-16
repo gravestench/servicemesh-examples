@@ -1,7 +1,7 @@
 package twitch_integration
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 const (

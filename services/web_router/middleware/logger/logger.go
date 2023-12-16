@@ -1,11 +1,11 @@
 package logger
 
 import (
+	"log/slog"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rs/zerolog"
 )
 
 type ginHands struct {
@@ -60,14 +60,10 @@ func Logger(serName string, l *slog.Logger) gin.HandlerFunc {
 }
 
 func logSwitch(data *ginHands) {
-	var e *zerolog.Event
-
 	switch {
 	case data.StatusCode >= http.StatusBadRequest && data.StatusCode <= http.StatusInternalServerError:
-		e = data.Warn()
+		data.Error("encountered error", "status", data.StatusCode, "method", data.Method, "path", data.Path, "latency", data.Latency)
 	default:
-		e = data.Info()
+		data.Info("handled", "status", data.StatusCode, "method", data.Method, "path", data.Path, "latency", data.Latency)
 	}
-
-	e.Msgf("%v %v %v %v", data.StatusCode, data.Method, data.Path, data.Latency)
 }

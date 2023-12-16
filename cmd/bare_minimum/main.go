@@ -1,9 +1,13 @@
 package main
 
+import (
+	"github.com/gravestench/servicemesh"
+)
+
 func main() {
-	rt := servicemesh.New("my runtime")
+	mesh := servicemesh.New()
 
-	rt.Add(&example{name: "foo"})
+	mesh.Add(&example{name: "foo"})
 
-	rt.Run()
+	mesh.Run()
 }

@@ -2,7 +2,7 @@ package twitch_auth_code_grant_flow
 
 import (
 	"github.com/gravestench/servicemesh"
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func (s *Service) DependenciesResolved() bool {

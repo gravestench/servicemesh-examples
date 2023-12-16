@@ -2,20 +2,22 @@ package main
 
 import (
 	"time"
+
+	"github.com/gravestench/servicemesh"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
 	go func() {
 		time.Sleep(time.Second)
-		rt.Shutdown()
+		mesh.Shutdown()
 	}()
 
-	rt.Add(&listensForNewServices{})
-	rt.Add(&exampleService{name: "foo"})
-	rt.Add(&exampleService{name: "bar"})
-	rt.Add(&exampleService{name: "baz"})
+	mesh.Add(&listensForNewServices{})
+	mesh.Add(&exampleService{name: "foo"})
+	mesh.Add(&exampleService{name: "bar"})
+	mesh.Add(&exampleService{name: "baz"})
 
-	rt.Run()
+	mesh.Run()
 }

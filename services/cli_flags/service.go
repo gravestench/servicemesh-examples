@@ -42,7 +42,7 @@ func (s *Service) Init(mesh servicemesh.M) {
 	s.parsed = make(map[string]struct{})
 	s.mux.Unlock()
 
-	go s.loopApplyFlags(manager)
+	go s.loopApplyFlags(mesh)
 }
 
 func (s *Service) Name() string {

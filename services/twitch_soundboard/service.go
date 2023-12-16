@@ -1,8 +1,12 @@
 package twitch_soundboard
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/desktop_notification"
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/desktop_notification"
 )
 
 // this is an example service that implements only the OnPrivateMessage handler
@@ -13,7 +17,7 @@ type Service struct {
 	log           *slog.Logger
 }
 
-func (s *Service) Init(r servicemesh.R) {
+func (s *Service) Init(mesh servicemesh.M) {
 	// nothing to do
 }
 

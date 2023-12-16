@@ -2,7 +2,7 @@ package raylib_renderer
 
 import (
 	"github.com/gravestench/servicemesh"
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func (s *Service) DependenciesResolved() bool {

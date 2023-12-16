@@ -2,8 +2,9 @@ package web_router
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gravestench/servicemesh"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 var (

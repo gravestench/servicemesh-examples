@@ -1,7 +1,12 @@
 package twitch_integration
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"log/slog"
+
+	"github.com/gempir/go-twitch-irc/v2"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 type Service struct {
@@ -13,7 +18,7 @@ type Service struct {
 
 func (s *Service) Init(mesh servicemesh.M) {
 	go s.setupClient()
-	go s.loopBindHandlers(rt)
+	go s.loopBindHandlers(mesh)
 }
 
 func (s *Service) Name() string {

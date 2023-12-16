@@ -5,9 +5,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gempir/go-twitch-irc/v2"
+	"github.com/gravestench/servicemesh"
 	"github.com/hegedustibor/htgo-tts/voices"
 
-	"github.com/gravestench/servicesmesh-examples/services/text_to_speech"
+	"github.com/gravestench/servicemesh-examples/services/text_to_speech"
 )
 
 // this service will just connect the TTS to the twitch integration service
@@ -48,8 +50,8 @@ func (g *glueService) DependenciesResolved() bool {
 	return g.tts != nil
 }
 
-func (g *glueService) ResolveDependencies(runtime servicemesh.R) {
-	for _, service := range servicemesh.Services() {
+func (g *glueService) ResolveDependencies(mesh servicemesh.M) {
+	for _, service := range mesh.Services() {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			g.tts = candidate
 		}

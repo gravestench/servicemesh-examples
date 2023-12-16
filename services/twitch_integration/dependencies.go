@@ -1,7 +1,9 @@
 package twitch_integration
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 func (s *Service) DependenciesResolved() bool {
@@ -17,7 +19,7 @@ func (s *Service) DependenciesResolved() bool {
 }
 
 func (s *Service) ResolveDependencies(mesh servicemesh.M) {
-	for _, service := range rt.Services() {
+	for _, service := range mesh.Services() {
 		if candidate, ok := service.(config_file.Dependency); ok {
 			s.cfgManager = candidate
 		}

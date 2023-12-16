@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/gravestench/servicemesh"
+)
+
 // the listener service will react to instances of this being added
 
 type exampleService struct {

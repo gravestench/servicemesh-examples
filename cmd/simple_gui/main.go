@@ -2,22 +2,23 @@ package main
 
 import (
 	"github.com/faiface/mainthread"
+	"github.com/gravestench/servicemesh"
 
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/raylib_renderer"
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/raylib_renderer"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 	r := &raylib_renderer.Service{}
 
-	rt.Add(&config_file.Service{RootDirectory: "~/.config/runtime/example/simple_gui"})
-	rt.Add(r)
+	mesh.Add(&config_file.Service{RootDirectory: "~/.config/servicemesh/examples/simple_gui"})
+	mesh.Add(r)
 
 	// create 100 layers, each will show a moving circle
 	for i := 0; i < 100; i++ {
 		r.AddLayer(newLayer())
 	}
 
-	mainthread.Run(rt.Run)
+	mainthread.Run(mesh.Run)
 }

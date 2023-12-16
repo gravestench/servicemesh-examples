@@ -4,9 +4,10 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gravestench/servicemesh"
 	"k8s.io/utils/strings/slices"
 
-	"github.com/gravestench/servicesmesh-examples/services/web_router/middleware/logger"
+	"github.com/gravestench/servicemesh-examples/services/web_router/middleware/logger"
 )
 
 func (s *Service) RouteRoot() *gin.Engine {
@@ -20,12 +21,12 @@ func (s *Service) Reload() {
 
 	s.reloadDebounce = time.Now()
 
-	s.log.Warn().Msg("reloading")
+	s.log.Warn("reloading")
 
 	if s.boundServices == nil {
-		s.log.Info().Msg("initializing routes")
+		s.log.Info("initializing routes")
 	} else {
-		s.log.Info().Msg("re-initializing routes")
+		s.log.Info("re-initializing routes")
 	}
 
 	// forget any already-bound services
@@ -53,11 +54,11 @@ func (s *Service) Reload() {
 
 func (s *Service) beginDynamicRouteBinding(mesh servicemesh.M) {
 	for {
-		if s.shouldInit(rt) {
+		if s.shouldInit(mesh) {
 			s.Reload()
 		}
 
-		s.bindNewRoutes(rt)
+		s.bindNewRoutes(mesh)
 		time.Sleep(time.Second)
 	}
 }
@@ -79,9 +80,9 @@ func (s *Service) shouldInit(mesh servicemesh.M) bool {
 	// we will check if any of the services that have routes are no longer
 	// in the list of the service managers services
 	allExistingServiceNames := make([]string, 0)
-	for _, candidate := range rt.Services() {
-		if svc, ok := candidate.(IsRouteInitializer); ok {
-			allExistingServiceNames = append(allExistingServiceNames, svc.Name())
+	for _, candidate := range mesh.Services() {
+		if _, ok := candidate.(IsRouteInitializer); ok {
+			allExistingServiceNames = append(allExistingServiceNames, candidate.Name())
 			continue
 		}
 	}
@@ -98,7 +99,7 @@ func (s *Service) shouldInit(mesh servicemesh.M) bool {
 }
 
 func (s *Service) bindNewRoutes(mesh servicemesh.M) {
-	for _, candidate := range rt.Services() {
+	for _, candidate := range mesh.Services() {
 		svcToInit, ok := candidate.(servicemesh.Service)
 		if !ok {
 			continue
@@ -121,7 +122,7 @@ func (s *Service) bindNewRoutes(mesh servicemesh.M) {
 		if r, ok := candidate.(IsRouteInitializer); ok {
 			r.InitRoutes(s.root.Group(groupPrefix))
 			s.boundServices[svcToInit.Name()] = nil // make 0-size entry
-			s.log.Info().Msgf("binding routes for the %q service", svcToInit.Name())
+			s.log.Info("binding routes", "route initializer", svcToInit.Name())
 
 			continue
 		}

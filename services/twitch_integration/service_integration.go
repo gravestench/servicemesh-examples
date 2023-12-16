@@ -1,7 +1,10 @@
 package twitch_integration
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
+	"github.com/gempir/go-twitch-irc/v2"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
 // Ensure that Service implements the required interfaces.

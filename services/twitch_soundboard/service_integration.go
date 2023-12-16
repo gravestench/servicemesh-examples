@@ -1,8 +1,10 @@
 package twitch_soundboard
 
 import (
-	"github.com/gravestench/servicesmesh-examples/services/config_file"
-	"github.com/gravestench/servicesmesh-examples/services/twitch_integration"
+	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/services/config_file"
+	"github.com/gravestench/servicemesh-examples/services/twitch_integration"
 )
 
 // Ensure that Service implements the required interfaces.

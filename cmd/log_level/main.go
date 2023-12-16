@@ -1,15 +1,17 @@
 package main
 
 import (
-	"github.com/rs/zerolog"
+	"log/slog"
+
+	"github.com/gravestench/servicemesh"
 )
 
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
-	rt.Add(&service{})
+	mesh.Add(&service{})
 
-	rt.Run()
+	mesh.Run()
 }
 
 type service struct {
@@ -17,20 +19,14 @@ type service struct {
 }
 
 func (s *service) Init(mesh servicemesh.M) {
-	rt.SetLogLevel(zerolog.WarnLevel)
-	s.logger.Trace().Msg("you should not see this")
-	s.logger.Debug().Msg("you should not see this")
-	s.logger.Info().Msg("you should not see this")
+	mesh.SetLogLevel(int(slog.LevelWarn))
+	s.logger.Debug("you should not see this")
+	s.logger.Info("you should not see this")
 
-	rt.SetLogLevel(zerolog.InfoLevel)
-	s.logger.Info().Msg("you should see this")
-	s.logger.Debug().Msg("you should not see this")
-	s.logger.Warn().Msg("you should see this")
-	s.logger.Error().Msg("you should see this")
-
-	rt.SetLogLevel(zerolog.TraceLevel)
-	s.logger.Trace().Msg("you should see this")
-	s.logger.Fatal().Msg("you should see this")
+	mesh.SetLogLevel(int(slog.LevelInfo))
+	s.logger.Info("you should see this")
+	s.logger.Warn("you should see this")
+	s.logger.Error("you should see this")
 }
 
 func (s *service) Name() string {

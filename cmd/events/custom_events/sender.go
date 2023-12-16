@@ -1,7 +1,10 @@
 package main
 
 import (
+	"log/slog"
 	"time"
+
+	"github.com/gravestench/servicemesh"
 )
 
 type sender struct {
@@ -17,11 +20,11 @@ func (s *sender) Logger() *slog.Logger {
 }
 
 func (s *sender) Init(mesh servicemesh.M) {
-	s.logger.Info().Msgf("emitting event in 3 seconds...")
+	s.logger.Info("emitting 'test' event in 3 seconds...")
 
 	time.Sleep(time.Second * 3)
 
-	rt.Events().Emit("test", "foo", 1, 2.3, []int{4, 5}).Wait()
+	mesh.Events().Emit("test", "foo", 1, 2.3, []int{4, 5}).Wait()
 }
 
 func (s *sender) Name() string {

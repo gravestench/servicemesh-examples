@@ -4,8 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gravestench/servicemesh"
 
-	"github.com/gravestench/servicesmesh-examples/services/web_router"
+	"github.com/gravestench/servicemesh-examples/services/web_router"
 )
 
 var (
@@ -24,9 +25,9 @@ func (s *exampleRouteInitializer) Name() string {
 }
 
 func (s *exampleRouteInitializer) InitRoutes(group *gin.RouterGroup) {
-	group.GET("foobar", s.exampleHandler)
+	group.GET("foo", s.exampleHandler)
 }
 
 func (s *exampleRouteInitializer) exampleHandler(c *gin.Context) {
-	c.String(http.StatusOK, "foobar is foobar")
+	c.String(http.StatusOK, "bar")
 }

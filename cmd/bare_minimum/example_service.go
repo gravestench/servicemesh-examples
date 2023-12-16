@@ -1,10 +1,14 @@
 package main
 
+import (
+	"github.com/gravestench/servicemesh"
+)
+
 type example struct {
 	name string
 }
 
-func (e *example) Init(r servicemesh.R) {
+func (e *example) Init(mesh servicemesh.M) {
 	return
 }
 

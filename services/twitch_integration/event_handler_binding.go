@@ -2,6 +2,8 @@ package twitch_integration
 
 import (
 	"time"
+
+	"github.com/gravestench/servicemesh"
 )
 
 // loopBindHandlers iterates over all services every second and binds event
@@ -13,7 +15,7 @@ func (s *Service) loopBindHandlers(mesh servicemesh.M) {
 	for {
 		time.Sleep(time.Second * 1)
 
-		for _, service := range rt.Services() {
+		for _, service := range mesh.Services() {
 			// if already bound, do nothing
 			if _, isBound := bound[service.Name()]; isBound {
 				continue
@@ -33,7 +35,7 @@ func (s *Service) bindService(service servicemesh.Service) {
 
 	cfg, err := s.Config()
 	if err != nil {
-		s.Logger().Fatal().Msgf("getting config", "error", err)
+		s.Logger().Error("getting config", "error", err)
 	}
 
 	cfgGroup := cfg.Group("handlers")

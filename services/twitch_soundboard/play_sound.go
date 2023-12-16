@@ -12,12 +12,12 @@ import (
 func (s *Service) playAudioFile(filePath string) error {
 	f, err := os.Open(filePath)
 	if err != nil {
-		s.log.Fatal().Err(err).Msg("")
+		s.log.Error("opening audio file", "error", err)
 	}
 
 	streamer, format, err := mp3.Decode(f)
 	if err != nil {
-		s.log.Fatal().Err(err).Msg("")
+		s.log.Error("playing mp3 audio file", "error", err)
 	}
 	defer streamer.Close()
 

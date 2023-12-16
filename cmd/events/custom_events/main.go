@@ -1,10 +1,14 @@
 package main
 
+import (
+	"github.com/gravestench/servicemesh"
+)
+
 func main() {
-	rt := servicemesh.New()
+	mesh := servicemesh.New()
 
-	rt.Add(&sender{})
-	rt.Add(&receiver{})
+	mesh.Add(&sender{})
+	mesh.Add(&receiver{})
 
-	rt.Run()
+	mesh.Run()
 }
