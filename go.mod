@@ -16,7 +16,7 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.5.0
 	github.com/gravestench/runtime v0.0.0-20231002182113-640425b821c6
-	github.com/gravestench/servicemesh v0.0.0-20231217212458-b62100fdfd7a
+	github.com/gravestench/servicemesh v0.0.0-20231217214505-398708ee4e08
 	github.com/hegedustibor/htgo-tts v0.0.0-20230402053941-cd8d1a158135
 	golang.org/x/oauth2 v0.15.0
 	k8s.io/utils v0.0.0-20231127182322-b307cd553661

@@ -19,11 +19,11 @@ type service struct {
 }
 
 func (s *service) Init(mesh servicemesh.Mesh) {
-	mesh.SetLogLevel(int(slog.LevelWarn))
+	mesh.SetLogLevel(slog.LevelWarn)
 	s.logger.Debug("you should not see this")
 	s.logger.Info("you should not see this")
 
-	mesh.SetLogLevel(int(slog.LevelInfo))
+	mesh.SetLogLevel(slog.LevelInfo)
 	s.logger.Info("you should see this")
 	s.logger.Warn("you should see this")
 	s.logger.Error("you should see this")
