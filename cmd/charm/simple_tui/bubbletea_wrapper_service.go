@@ -18,7 +18,7 @@ type bubbleteaService struct {
 	mux sync.Mutex
 }
 
-func (b *bubbleteaService) Init(mesh servicemesh.M) {
+func (b *bubbleteaService) Init(mesh servicemesh.Mesh) {
 	go b.runLoop()
 
 	b.bindExisting(mesh)
@@ -40,7 +40,7 @@ func (b *bubbleteaService) runLoop() {
 	}
 }
 
-func (b *bubbleteaService) bindExisting(mesh servicemesh.M) {
+func (b *bubbleteaService) bindExisting(mesh servicemesh.Mesh) {
 	var models []tea.Model
 
 	for _, service := range mesh.Services() {

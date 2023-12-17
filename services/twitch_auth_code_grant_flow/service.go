@@ -19,7 +19,7 @@ type Service struct {
 	token string
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 
 }
 

@@ -18,7 +18,7 @@ func (s *listensForNewServices) Logger() *slog.Logger {
 	return s.logger
 }
 
-func (s *listensForNewServices) Init(mesh servicemesh.M) {
+func (s *listensForNewServices) Init(mesh servicemesh.Mesh) {
 	// noop
 }
 

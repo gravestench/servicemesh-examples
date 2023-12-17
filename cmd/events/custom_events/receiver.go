@@ -18,7 +18,7 @@ func (r *receiver) Logger() *slog.Logger {
 	return r.logger
 }
 
-func (r *receiver) Init(mesh servicemesh.M) {
+func (r *receiver) Init(mesh servicemesh.Mesh) {
 	mesh.Events().On("test", func(args ...any) {
 		r.logger.Info("event received", "event", "test", "args", args)
 	})

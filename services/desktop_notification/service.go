@@ -15,7 +15,7 @@ type Service struct {
 	cfgManager config_file.Manager
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 
 }
 
@@ -35,7 +35,7 @@ func (s *Service) DependenciesResolved() bool {
 	return s.cfgManager != nil
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.M) {
+func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, candidate := range mesh.Services() {
 		if service, ok := candidate.(config_file.Manager); ok {
 			s.cfgManager = service

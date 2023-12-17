@@ -16,7 +16,7 @@ var (
 
 type exampleRouteInitializer struct{}
 
-func (s *exampleRouteInitializer) Init(mesh servicemesh.M) {
+func (s *exampleRouteInitializer) Init(mesh servicemesh.Mesh) {
 	// nothing to do
 }
 

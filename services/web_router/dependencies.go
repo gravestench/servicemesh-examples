@@ -14,7 +14,7 @@ func (s *Service) DependenciesResolved() bool {
 	return true
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.M) {
+func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, other := range mesh.Services() {
 		if cfg, ok := other.(config_file.Manager); ok {
 			s.cfgManager = cfg

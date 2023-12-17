@@ -8,7 +8,7 @@ type example struct {
 	name string
 }
 
-func (e *example) Init(mesh servicemesh.M) {
+func (e *example) Init(mesh servicemesh.Mesh) {
 	return
 }
 

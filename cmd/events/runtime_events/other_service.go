@@ -10,7 +10,7 @@ type exampleService struct {
 	name string
 }
 
-func (e *exampleService) Init(mesh servicemesh.M) {
+func (e *exampleService) Init(mesh servicemesh.Mesh) {
 	// noop
 }
 

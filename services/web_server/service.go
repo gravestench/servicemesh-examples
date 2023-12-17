@@ -18,7 +18,7 @@ type Service struct {
 	lastConfig string
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	s.StartServer()
 }
 

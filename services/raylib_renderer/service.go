@@ -20,7 +20,7 @@ type Service struct {
 	order      []string
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	defer func() { _ = recover() /* don't worry about it */ }()
 
 	if s.layers == nil {

@@ -19,7 +19,7 @@ func (s *sender) Logger() *slog.Logger {
 	return s.logger
 }
 
-func (s *sender) Init(mesh servicemesh.M) {
+func (s *sender) Init(mesh servicemesh.Mesh) {
 	s.logger.Info("emitting 'test' event in 3 seconds...")
 
 	time.Sleep(time.Second * 3)

@@ -17,7 +17,7 @@ type Service struct {
 	log           *slog.Logger
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	// nothing to do
 }
 

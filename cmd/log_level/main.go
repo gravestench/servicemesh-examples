@@ -18,7 +18,7 @@ type service struct {
 	logger *slog.Logger
 }
 
-func (s *service) Init(mesh servicemesh.M) {
+func (s *service) Init(mesh servicemesh.Mesh) {
 	mesh.SetLogLevel(int(slog.LevelWarn))
 	s.logger.Debug("you should not see this")
 	s.logger.Info("you should not see this")

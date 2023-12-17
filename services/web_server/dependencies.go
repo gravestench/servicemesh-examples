@@ -19,7 +19,7 @@ func (s *Service) DependenciesResolved() bool {
 	return true
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.M) {
+func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, other := range mesh.Services() {
 		if router, ok := other.(web_router.IsWebRouter); ok {
 			if router.RouteRoot() != nil {

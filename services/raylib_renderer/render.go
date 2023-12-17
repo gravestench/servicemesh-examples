@@ -30,7 +30,7 @@ func (s *Service) initRenderer() {
 	})
 }
 
-func (s *Service) gatherLayers(mesh servicemesh.M) {
+func (s *Service) gatherLayers(mesh servicemesh.Mesh) {
 	for {
 		for _, service := range mesh.Services() {
 			if _, alreadyBound := s.layers[service.Name()]; alreadyBound {
@@ -46,7 +46,7 @@ func (s *Service) gatherLayers(mesh servicemesh.M) {
 	}
 }
 
-func (s *Service) renderServicesAsLayers(mesh servicemesh.M) {
+func (s *Service) renderServicesAsLayers(mesh servicemesh.Mesh) {
 	s.mux.Lock()
 	defer s.mux.Unlock()
 

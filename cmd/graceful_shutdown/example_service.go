@@ -19,7 +19,7 @@ func (e *example) Logger() *slog.Logger {
 	return e.l
 }
 
-func (e *example) Init(mesh servicemesh.M) {
+func (e *example) Init(mesh servicemesh.Mesh) {
 	return
 }
 

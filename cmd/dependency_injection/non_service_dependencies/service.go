@@ -50,7 +50,7 @@ func (s *Service) ResolveDependencies(_ pkg.IsRuntime) {
 	// to call Init unless until we have resolved our deps ourselves.
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	return
 }
 

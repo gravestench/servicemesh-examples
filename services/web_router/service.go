@@ -34,7 +34,7 @@ func (s *Service) Logger() *slog.Logger {
 	return s.log
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	gin.SetMode("release")
 	mesh.Add(&static_assets.Middleware{})
 	s.root = gin.New()

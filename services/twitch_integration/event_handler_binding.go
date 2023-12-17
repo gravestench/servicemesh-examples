@@ -8,7 +8,7 @@ import (
 
 // loopBindHandlers iterates over all services every second and binds event
 // handlers for services that implement interfaces found in abstract.go
-func (s *Service) loopBindHandlers(mesh servicemesh.M) {
+func (s *Service) loopBindHandlers(mesh servicemesh.Mesh) {
 	// we will keep track service we've already bound
 	bound := make(map[string]any)
 

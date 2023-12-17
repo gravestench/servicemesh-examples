@@ -16,7 +16,7 @@ type filePickerService struct {
 	model *filePickerModel
 }
 
-func (t *filePickerService) Init(mesh servicemesh.M) {
+func (t *filePickerService) Init(mesh servicemesh.Mesh) {
 	t.model = &filePickerModel{}
 }
 

@@ -16,7 +16,7 @@ type Service struct {
 	twitchIrcClient *twitch.Client
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	go s.setupClient()
 	go s.loopBindHandlers(mesh)
 }

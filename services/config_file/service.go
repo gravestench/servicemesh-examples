@@ -38,7 +38,7 @@ func (s *Service) Name() string {
 }
 
 // Init satisfies the servicemesh.IsRuntimeService interface
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	s.configs = make(map[string]*Config)
 	s.servicesWithDefaultConfigs = make(map[string]HasDefaultConfig)
 

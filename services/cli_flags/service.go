@@ -34,7 +34,7 @@ func (s *Service) Logger() *slog.Logger {
 	return s.log
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	s.args = make([]string, len(os.Args))
 	copy(s.args, os.Args)
 
@@ -49,7 +49,7 @@ func (s *Service) Name() string {
 	return "CLI Flags"
 }
 
-func (s *Service) loopApplyFlags(manager servicemesh.M) {
+func (s *Service) loopApplyFlags(manager servicemesh.Mesh) {
 	for {
 		for _, candidate := range manager.Services() {
 			s.applyFlags(candidate)

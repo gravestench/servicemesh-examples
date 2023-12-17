@@ -24,7 +24,7 @@ func (m *Middleware) Name() string {
 	return "Static Assets Middleware"
 }
 
-func (m *Middleware) Init(mesh servicemesh.M) {
+func (m *Middleware) Init(mesh servicemesh.Mesh) {
 	m.initMiddleware()
 
 	for {

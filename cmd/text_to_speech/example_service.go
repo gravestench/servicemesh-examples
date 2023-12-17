@@ -17,7 +17,7 @@ func (s *exampleServiceThatUsesTts) DependenciesResolved() bool {
 	return s.tts != nil
 }
 
-func (s *exampleServiceThatUsesTts) ResolveDependencies(mesh servicemesh.M) {
+func (s *exampleServiceThatUsesTts) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, service := range mesh.Services() {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			s.tts = candidate
@@ -25,7 +25,7 @@ func (s *exampleServiceThatUsesTts) ResolveDependencies(mesh servicemesh.M) {
 	}
 }
 
-func (s *exampleServiceThatUsesTts) Init(mesh servicemesh.M) {
+func (s *exampleServiceThatUsesTts) Init(mesh servicemesh.Mesh) {
 	go s.loopSpeakRandomStuff()
 }
 

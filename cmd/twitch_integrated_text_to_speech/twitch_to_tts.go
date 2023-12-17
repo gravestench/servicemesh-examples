@@ -50,7 +50,7 @@ func (g *glueService) DependenciesResolved() bool {
 	return g.tts != nil
 }
 
-func (g *glueService) ResolveDependencies(mesh servicemesh.M) {
+func (g *glueService) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, service := range mesh.Services() {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			g.tts = candidate
@@ -58,7 +58,7 @@ func (g *glueService) ResolveDependencies(mesh servicemesh.M) {
 	}
 }
 
-func (g *glueService) Init(mesh servicemesh.M) {
+func (g *glueService) Init(mesh servicemesh.Mesh) {
 	// do nothing
 }
 

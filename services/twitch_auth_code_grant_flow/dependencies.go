@@ -9,7 +9,7 @@ func (s *Service) DependenciesResolved() bool {
 	return s.cfg != nil
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.M) {
+func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
 	for _, service := range mesh.Services() {
 		if candidate, ok := service.(config_file.Dependency); ok {
 			s.cfg = candidate

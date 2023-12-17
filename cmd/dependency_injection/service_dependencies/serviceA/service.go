@@ -25,7 +25,7 @@ func (s *Service) A() string {
 	return "this message came from ServiceA"
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	s.log.Info("calling B()", "message from B", s.dependency.B())
 	return
 }
@@ -46,7 +46,7 @@ func (s *Service) DependenciesResolved() bool {
 	return s.dependency != nil
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.M) {
+func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
 	// here, we iterate over all services from the runtime
 	// and check if the service implements something we need.
 	for _, service := range mesh.Services() {

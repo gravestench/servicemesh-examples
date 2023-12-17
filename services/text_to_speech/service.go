@@ -19,7 +19,7 @@ type Service struct {
 	speech     htgotts.Speech
 }
 
-func (s *Service) Init(mesh servicemesh.M) {
+func (s *Service) Init(mesh servicemesh.Mesh) {
 	var cfg *config_file.Config
 
 	for { // wait until the config or default config is saved + loaded

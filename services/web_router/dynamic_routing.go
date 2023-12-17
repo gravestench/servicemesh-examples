@@ -52,7 +52,7 @@ func (s *Service) Reload() {
 	s.root.Use(logger.Logger("gin", s.log))
 }
 
-func (s *Service) beginDynamicRouteBinding(mesh servicemesh.M) {
+func (s *Service) beginDynamicRouteBinding(mesh servicemesh.Mesh) {
 	for {
 		if s.shouldInit(mesh) {
 			s.Reload()
@@ -63,7 +63,7 @@ func (s *Service) beginDynamicRouteBinding(mesh servicemesh.M) {
 	}
 }
 
-func (s *Service) shouldInit(mesh servicemesh.M) bool {
+func (s *Service) shouldInit(mesh servicemesh.Mesh) bool {
 	if s.boundServices == nil {
 		return true // base case, happens at app start
 	}
@@ -98,7 +98,7 @@ func (s *Service) shouldInit(mesh servicemesh.M) bool {
 	return false
 }
 
-func (s *Service) bindNewRoutes(mesh servicemesh.M) {
+func (s *Service) bindNewRoutes(mesh servicemesh.Mesh) {
 	for _, candidate := range mesh.Services() {
 		svcToInit, ok := candidate.(servicemesh.Service)
 		if !ok {
