@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/gravestench/runtime/pkg"
 	"github.com/gravestench/servicemesh"
 )
 
@@ -43,10 +42,10 @@ func (s *Service) DependenciesResolved() bool {
 	return s.dependency != nil
 }
 
-func (s *Service) ResolveDependencies(_ pkg.IsRuntime) {
-	// in this example, we are not using the runtime to find our dependencies,
+func (s *Service) ResolveDependencies(_ servicemesh.Mesh) {
+	// in this example, we are not using the service mesh to find our dependencies,
 	// they are resolved some other way (this is up to you). However, we
-	// do implement servicemesh.HasDependencies so that the runtime knows not
+	// do implement servicemesh.HasDependencies so that the service mesh knows not
 	// to call Init unless until we have resolved our deps ourselves.
 }
 

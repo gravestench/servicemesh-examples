@@ -21,12 +21,12 @@ func main() {
 	// the inverse is true of serviceB, which needs to call the A() method.
 	//
 	// both of these services implement servicemesh.HasDependencies, and they both
-	// will use the runtime to find and assign a service that matches the
+	// will use the service mesh to find and assign a service that matches the
 	// interface they are looking for.
 	mesh.Add(serviceA.New("serviceA instance"))
 	mesh.Add(serviceB.New("serviceB instance"))
 
-	// when this runs, you will see the runtime initiates the dependency
+	// when this runs, you will see the service mesh initiates the dependency
 	// resolution and the services will end up with their dependencies met.
 	mesh.Run()
 }

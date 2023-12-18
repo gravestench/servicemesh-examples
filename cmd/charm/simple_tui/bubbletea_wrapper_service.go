@@ -5,7 +5,6 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/gravestench/runtime/pkg/events"
 	"github.com/gravestench/servicemesh"
 )
 
@@ -23,7 +22,7 @@ func (b *bubbleteaService) Init(mesh servicemesh.Mesh) {
 
 	b.bindExisting(mesh)
 
-	mesh.Events().On(events.EventServiceAdded, func(...any) {
+	mesh.Events().On(servicemesh.EventServiceAdded, func(...any) {
 		b.bindExisting(mesh)
 	})
 }

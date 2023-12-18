@@ -47,7 +47,7 @@ func (s *Service) DependenciesResolved() bool {
 }
 
 func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
-	// here, we iterate over all services from the runtime
+	// here, we iterate over all services from the service mesh
 	// and check if the service implements something we need.
 	for _, service := range mesh.Services() {
 		if b, ok := service.(hasB); ok {
