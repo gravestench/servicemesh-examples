@@ -23,6 +23,8 @@ func (s *Service) Name() string {
 	return "Desktop Notifications"
 }
 
+func (s *Service) Ready() bool { return true }
+
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.logger = logger
 }
@@ -35,8 +37,8 @@ func (s *Service) DependenciesResolved() bool {
 	return s.cfgManager != nil
 }
 
-func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
-	for _, candidate := range mesh.Services() {
+func (s *Service) ResolveDependencies(services []servicemesh.Service) {
+	for _, candidate := range services {
 		if service, ok := candidate.(config_file.Manager); ok {
 			s.cfgManager = service
 		}

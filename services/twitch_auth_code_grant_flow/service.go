@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	"github.com/gravestench/servicemesh"
+
 	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
@@ -26,6 +27,8 @@ func (s *Service) Init(mesh servicemesh.Mesh) {
 func (s *Service) Name() string {
 	return "Twitch Integration (Auth code grant flow)"
 }
+
+func (s *Service) Ready() bool { return true }
 
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.logger = logger

@@ -37,6 +37,8 @@ func (m *Middleware) Init(mesh servicemesh.Mesh) {
 	}
 }
 
+func (s *Middleware) Ready() bool { return true }
+
 func (m *Middleware) initMiddleware() {
 	r := m.router.RouteRoot()
 	m.log.Info("setting up routes for static assets")

@@ -50,8 +50,8 @@ func (g *glueService) DependenciesResolved() bool {
 	return g.tts != nil
 }
 
-func (g *glueService) ResolveDependencies(mesh servicemesh.Mesh) {
-	for _, service := range mesh.Services() {
+func (g *glueService) ResolveDependencies(services []servicemesh.Service) {
+	for _, service := range services {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			g.tts = candidate
 		}
@@ -65,3 +65,5 @@ func (g *glueService) Init(mesh servicemesh.Mesh) {
 func (g *glueService) Name() string {
 	return "glue service: tts <-> twitch integration"
 }
+
+func (s *glueService) Ready() bool { return true }

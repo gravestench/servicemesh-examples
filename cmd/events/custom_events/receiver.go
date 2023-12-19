@@ -27,3 +27,5 @@ func (r *receiver) Init(mesh servicemesh.Mesh) {
 func (r *receiver) Name() string {
 	return "receiver"
 }
+
+func (s *receiver) Ready() bool { return true }

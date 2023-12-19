@@ -50,6 +50,8 @@ func (s *Service) Name() string {
 	return "Text-to-speech"
 }
 
+func (s *Service) Ready() bool { return true }
+
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.logger = logger
 }

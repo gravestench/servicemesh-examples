@@ -9,6 +9,7 @@ import (
 	"github.com/faiface/mainthread"
 	rl "github.com/gen2brain/raylib-go/raylib"
 	"github.com/gravestench/servicemesh"
+
 	"github.com/gravestench/servicemesh-examples/services/config_file"
 )
 
@@ -28,7 +29,7 @@ func (s *Service) Init(mesh servicemesh.Mesh) {
 	}
 
 	// raylib requires servicemesh.Run() to be passed into mainthread.Run in main.go
-	go s.gatherLayers(mesh)
+	go s.gatherLayers(mesh.Services())
 	s.initRenderer()
 	s.renderServicesAsLayers(mesh)
 }
@@ -58,6 +59,8 @@ func (s *Service) AddLayer(layer RenderableLayer) {
 func (s *Service) Name() string {
 	return "Raylib Renderer"
 }
+
+func (s *Service) Ready() bool { return true }
 
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.log = logger

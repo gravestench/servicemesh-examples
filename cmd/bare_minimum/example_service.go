@@ -15,3 +15,5 @@ func (e *example) Init(mesh servicemesh.Mesh) {
 func (e *example) Name() string {
 	return e.name
 }
+
+func (s *example) Ready() bool { return true }

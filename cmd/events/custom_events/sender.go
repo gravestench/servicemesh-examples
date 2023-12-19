@@ -19,6 +19,8 @@ func (s *sender) Logger() *slog.Logger {
 	return s.logger
 }
 
+func (s *sender) Ready() bool { return true }
+
 func (s *sender) Init(mesh servicemesh.Mesh) {
 	s.logger.Info("emitting 'test' event in 3 seconds...")
 

@@ -42,12 +42,14 @@ func (s *Service) DependenciesResolved() bool {
 	return s.dependency != nil
 }
 
-func (s *Service) ResolveDependencies(_ servicemesh.Mesh) {
+func (s *Service) ResolveDependencies(_ []servicemesh.Service) {
 	// in this example, we are not using the service mesh to find our dependencies,
 	// they are resolved some other way (this is up to you). However, we
 	// do implement servicemesh.HasDependencies so that the service mesh knows not
 	// to call Init unless until we have resolved our deps ourselves.
 }
+
+func (s *Service) Ready() bool { return true }
 
 func (s *Service) Init(mesh servicemesh.Mesh) {
 	return

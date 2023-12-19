@@ -30,9 +30,9 @@ func (s *Service) initRenderer() {
 	})
 }
 
-func (s *Service) gatherLayers(mesh servicemesh.Mesh) {
+func (s *Service) gatherLayers(services []servicemesh.Service) {
 	for {
-		for _, service := range mesh.Services() {
+		for _, service := range services {
 			if _, alreadyBound := s.layers[service.Name()]; alreadyBound {
 				continue
 			}

@@ -17,8 +17,8 @@ func (s *exampleServiceThatUsesTts) DependenciesResolved() bool {
 	return s.tts != nil
 }
 
-func (s *exampleServiceThatUsesTts) ResolveDependencies(mesh servicemesh.Mesh) {
-	for _, service := range mesh.Services() {
+func (s *exampleServiceThatUsesTts) ResolveDependencies(services []servicemesh.Service) {
+	for _, service := range services {
 		if candidate, ok := service.(text_to_speech.ConvertsTextToSpeech); ok {
 			s.tts = candidate
 		}
@@ -41,6 +41,8 @@ func (s *exampleServiceThatUsesTts) loopSpeakRandomStuff() {
 func (s *exampleServiceThatUsesTts) Name() string {
 	return "example service that uses text to speech"
 }
+
+func (s *exampleServiceThatUsesTts) Ready() bool { return true }
 
 var (
 	adjectives = []string{

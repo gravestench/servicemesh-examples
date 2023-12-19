@@ -7,8 +7,8 @@ import (
 	"github.com/gravestench/servicemesh-examples/services/desktop_notification"
 )
 
-func (s *Service) ResolveDependencies(mesh servicemesh.Mesh) {
-	for _, service := range mesh.Services() {
+func (s *Service) ResolveDependencies(services []servicemesh.Service) {
+	for _, service := range services {
 		if instance, ok := service.(config_file.Manager); ok {
 			s.configManager = instance
 		}

@@ -24,6 +24,8 @@ func (s *exampleRouteInitializer) Name() string {
 	return "Example"
 }
 
+func (s *exampleRouteInitializer) Ready() bool { return true }
+
 func (s *exampleRouteInitializer) InitRoutes(group *gin.RouterGroup) {
 	group.GET("foo", s.exampleHandler)
 }

@@ -17,13 +17,15 @@ type bubbleteaService struct {
 	mux sync.Mutex
 }
 
+func (s *bubbleteaService) Ready() bool { return true }
+
 func (b *bubbleteaService) Init(mesh servicemesh.Mesh) {
 	go b.runLoop()
 
-	b.bindExisting(mesh)
+	b.bindExisting(mesh.Services())
 
 	mesh.Events().On(servicemesh.EventServiceAdded, func(...any) {
-		b.bindExisting(mesh)
+		b.bindExisting(mesh.Services())
 	})
 }
 
@@ -39,10 +41,10 @@ func (b *bubbleteaService) runLoop() {
 	}
 }
 
-func (b *bubbleteaService) bindExisting(mesh servicemesh.Mesh) {
+func (b *bubbleteaService) bindExisting(services []servicemesh.Service) {
 	var models []tea.Model
 
-	for _, service := range mesh.Services() {
+	for _, service := range services {
 		if candidate, ok := service.(serviceWithModel); ok {
 			models = append(models, candidate.Model())
 		}

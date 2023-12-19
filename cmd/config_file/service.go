@@ -19,8 +19,8 @@ type serviceThatUsesConfigManager struct {
 	log           *slog.Logger
 }
 
-func (s *serviceThatUsesConfigManager) ResolveDependencies(mesh servicemesh.Mesh) {
-	for _, service := range mesh.Services() {
+func (s *serviceThatUsesConfigManager) ResolveDependencies(services []servicemesh.Service) {
+	for _, service := range services {
 		if instance, ok := service.(config_file.Manager); ok {
 			s.configManager = instance
 		}
@@ -30,6 +30,8 @@ func (s *serviceThatUsesConfigManager) ResolveDependencies(mesh servicemesh.Mesh
 func (s *serviceThatUsesConfigManager) DependenciesResolved() bool {
 	return s.configManager != nil
 }
+
+func (s *serviceThatUsesConfigManager) Ready() bool { return true }
 
 func (s *serviceThatUsesConfigManager) Init(mesh servicemesh.Mesh) {
 	cfg, err := s.configManager.GetConfig("test.json")

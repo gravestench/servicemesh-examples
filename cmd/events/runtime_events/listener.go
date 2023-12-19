@@ -26,6 +26,8 @@ func (s *listensForNewServices) Name() string {
 	return "listener"
 }
 
+func (s *listensForNewServices) Ready() bool { return true }
+
 // there are a bunch of runtime events to bind to via
 // implementing an interface like this one
 
