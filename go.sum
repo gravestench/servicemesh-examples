@@ -366,6 +366,8 @@ github.com/gravestench/servicemesh v0.0.0-20231219013204-1da0a4a7b028 h1:ohCLqUU
 github.com/gravestench/servicemesh v0.0.0-20231219013204-1da0a4a7b028/go.mod h1:wIMRb3qWNz8jl7jFg4mTfpFq2BSoPfIwPtBHLxrdpUY=
 github.com/gravestench/servicemesh v0.0.0-20260805151115-ecdd5d4027e6 h1:fhgSIf7nMwYTtVn0wftQcCVtAR2aA8mqpo63NcjjXoc=
 github.com/gravestench/servicemesh v0.0.0-20260805151115-ecdd5d4027e6/go.mod h1:wIMRb3qWNz8jl7jFg4mTfpFq2BSoPfIwPtBHLxrdpUY=
+github.com/gravestench/servicemesh v0.0.0-20260805154124-2c30b7cf8c4d h1:WypJMRx5AilKRxby97jhsQj5aXFz4nFCYkh8n1J4g98=
+github.com/gravestench/servicemesh v0.0.0-20260805154124-2c30b7cf8c4d/go.mod h1:wIMRb3qWNz8jl7jFg4mTfpFq2BSoPfIwPtBHLxrdpUY=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.0/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.8.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
