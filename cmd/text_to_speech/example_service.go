@@ -42,8 +42,6 @@ func (s *exampleServiceThatUsesTts) Name() string {
 	return "example service that uses text to speech"
 }
 
-func (s *exampleServiceThatUsesTts) Ready() bool { return true }
-
 var (
 	adjectives = []string{
 		"happy", "sad", "brave", "kind", "smart", "funny", "silly",

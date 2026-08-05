@@ -23,8 +23,6 @@ func (s *Service) Name() string {
 	return "Desktop Notifications"
 }
 
-func (s *Service) Ready() bool { return true }
-
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.logger = logger
 }

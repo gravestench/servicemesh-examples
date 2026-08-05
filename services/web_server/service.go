@@ -33,5 +33,3 @@ func (s *Service) Logger() *slog.Logger {
 func (s *Service) Name() string {
 	return "Web Server"
 }
-
-func (s *Service) Ready() bool { return true }

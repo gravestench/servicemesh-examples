@@ -61,5 +61,3 @@ func (s *Service) Init(mesh servicemesh.Mesh) {
 		}
 	})
 }
-
-func (s *Service) Ready() bool { return true }

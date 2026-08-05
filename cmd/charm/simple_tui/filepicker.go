@@ -16,8 +16,6 @@ type filePickerService struct {
 	model *filePickerModel
 }
 
-func (s *filePickerService) Ready() bool { return true }
-
 func (t *filePickerService) Init(mesh servicemesh.Mesh) {
 	t.model = &filePickerModel{}
 }

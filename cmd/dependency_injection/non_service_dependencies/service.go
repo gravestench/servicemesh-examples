@@ -49,8 +49,6 @@ func (s *Service) ResolveDependencies(_ []servicemesh.Service) {
 	// to call Init unless until we have resolved our deps ourselves.
 }
 
-func (s *Service) Ready() bool { return true }
-
 func (s *Service) Init(mesh servicemesh.Mesh) {
 	return
 }

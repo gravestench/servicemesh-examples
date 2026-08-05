@@ -33,8 +33,6 @@ func (s *service) Name() string {
 	return "Example"
 }
 
-func (s *service) Ready() bool { return true }
-
 func (s *service) SetLogger(logger *slog.Logger) {
 	s.logger = logger
 }

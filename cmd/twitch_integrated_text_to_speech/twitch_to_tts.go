@@ -65,5 +65,3 @@ func (g *glueService) Init(mesh servicemesh.Mesh) {
 func (g *glueService) Name() string {
 	return "glue service: tts <-> twitch integration"
 }
-
-func (s *glueService) Ready() bool { return true }

@@ -49,8 +49,6 @@ func (s *Service) Name() string {
 	return "CLI Flags"
 }
 
-func (s *Service) Ready() bool { return true }
-
 func (s *Service) loopApplyFlags(manager servicemesh.Mesh) {
 	for {
 		for _, candidate := range manager.Services() {

@@ -2,8 +2,6 @@ package serviceB
 
 import (
 	"log/slog"
-	"math/rand"
-	"time"
 
 	"github.com/gravestench/servicemesh"
 )
@@ -12,18 +10,13 @@ type hasA interface{ A() string }
 
 func New(name string) *Service {
 	return &Service{
-		name:         name,
-		creationTime: time.Now(),
-		readyDelay:   time.Duration(rand.Intn(5)+2) * time.Second,
+		name: name,
 	}
 }
 
 type Service struct {
 	log  *slog.Logger
 	name string
-
-	creationTime time.Time
-	readyDelay   time.Duration
 
 	dependency hasA // depends on service B
 }
@@ -39,10 +32,6 @@ func (s *Service) Init(mesh servicemesh.Mesh) {
 
 func (s *Service) Name() string {
 	return s.name
-}
-
-func (s *Service) Ready() bool {
-	return time.Since(s.creationTime) > s.readyDelay
 }
 
 func (s *Service) Logger() *slog.Logger {

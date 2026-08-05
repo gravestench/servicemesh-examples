@@ -31,8 +31,6 @@ func (s *serviceThatUsesConfigManager) DependenciesResolved() bool {
 	return s.configManager != nil
 }
 
-func (s *serviceThatUsesConfigManager) Ready() bool { return true }
-
 func (s *serviceThatUsesConfigManager) Init(mesh servicemesh.Mesh) {
 	cfg, err := s.configManager.GetConfig("test.json")
 	if err != nil {

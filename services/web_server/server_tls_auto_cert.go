@@ -91,7 +91,7 @@ func (s *Service) initAutocertTlsProductionServer() {
 			// lets go
 			go func() {
 				if err := srv.ListenAndServeTLS("", ""); err != nil && err != http.ErrServerClosed {
-					s.log.Error("listen: %+s\n", err)
+					s.log.Error("TLS server stopped", "error", err)
 					panic(err)
 				}
 			}()
@@ -109,7 +109,7 @@ func (s *Service) initAutocertTlsProductionServer() {
 			if err == http.ErrServerClosed {
 				s.log.Info("server exited properly")
 			} else if err != nil {
-				s.log.Info("server encountered an error on exit: %+s\n", err)
+				s.log.Info("server encountered an error on exit", "error", err)
 			}
 		}
 	)
@@ -150,7 +150,7 @@ func (s *Service) initAutocertTlsProductionServer() {
 	// on subsequent runs, simplecert will load the certificate from the cache directory on disk.
 	certReloader, err = simplecert.Init(certConfig, func() {})
 	if err != nil {
-		s.log.Error("simplecert init failed: ", err)
+		s.log.Error("simplecert init failed", "error", err)
 		panic(err)
 	}
 

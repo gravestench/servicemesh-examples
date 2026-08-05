@@ -17,8 +17,6 @@ type bubbleteaService struct {
 	mux sync.Mutex
 }
 
-func (s *bubbleteaService) Ready() bool { return true }
-
 func (b *bubbleteaService) Init(mesh servicemesh.Mesh) {
 	go b.runLoop()
 

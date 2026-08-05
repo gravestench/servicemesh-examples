@@ -27,18 +27,17 @@ func (s *Service) OnTwitchPrivateMessage(message twitch.PrivateMessage) {
 		sounds := group.GetStrings(trigger)
 		soundPath, _ := pickRandomString(sounds)
 
-		go func() {
-			if err = s.playAudioFile(soundPath); err != nil {
+		go func(path string) {
+			if err := s.playAudioFile(path); err != nil {
 				s.log.Error("playing sound file", "error", err)
 			}
-		}()
+		}(soundPath)
 
 		s.log.Info(
-			"twitch private message",
+			"playing audio for twitch private message",
 			"chat message", message.Message,
 			"trigger", trigger,
-			"sound", soundPath,
-			"playing audio")
+			"sound", soundPath)
 
 		if s.notification != nil {
 			s.notification.Notify("Twitch", fmt.Sprintf("playing %v", soundPath), "/home/gravestench/Downloads/twitch_favicon.png")

@@ -60,8 +60,6 @@ func (s *Service) Name() string {
 	return "Raylib Renderer"
 }
 
-func (s *Service) Ready() bool { return true }
-
 func (s *Service) SetLogger(logger *slog.Logger) {
 	s.log = logger
 }

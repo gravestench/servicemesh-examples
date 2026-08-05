@@ -44,5 +44,3 @@ func (s *Service) Init(mesh servicemesh.Mesh) {
 func (s *Service) Name() string {
 	return "Web Router"
 }
-
-func (s *Service) Ready() bool { return true }
