@@ -9,7 +9,7 @@ import (
 func main() {
 	mesh := servicemesh.New()
 
-	mesh.Add(&service{})
+	mesh.Add(&service{}).Wait()
 
 	mesh.Run()
 }

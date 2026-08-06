@@ -11,10 +11,8 @@ var (
 	_ Manager               = &Service{}
 )
 
-// The following interfaces are to be used much like the service interfaces
-// found inside of runtime/pkg. These can be used by other services to
-// declare and resolve their dependencies to the service defined in this
-// package.
+// The following interfaces can be used by other services to declare and
+// resolve dependencies on the configuration service.
 
 // HasConfig represents a something with a configuration file path and retrieval methods.
 type HasConfig interface {

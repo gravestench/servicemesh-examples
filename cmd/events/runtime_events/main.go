@@ -4,6 +4,8 @@ import (
 	"time"
 
 	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/internal/examplemesh"
 )
 
 func main() {
@@ -11,13 +13,16 @@ func main() {
 
 	go func() {
 		time.Sleep(time.Second)
-		mesh.Shutdown()
+		mesh.Shutdown().Wait()
 	}()
 
-	mesh.Add(&listensForNewServices{})
-	mesh.Add(&exampleService{name: "foo"})
-	mesh.Add(&exampleService{name: "bar"})
-	mesh.Add(&exampleService{name: "baz"})
+	// Register the listener first so it observes the remaining additions.
+	mesh.Add(&listensForNewServices{}).Wait()
+	examplemesh.AddAndWait(mesh,
+		&exampleService{name: "foo"},
+		&exampleService{name: "bar"},
+		&exampleService{name: "baz"},
+	)
 
 	mesh.Run()
 }

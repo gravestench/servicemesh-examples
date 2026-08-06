@@ -11,7 +11,7 @@ func main() {
 	mesh := servicemesh.New()
 	mesh.SetLogHandler(slog.NewJSONHandler(os.Stdout, nil))
 
-	mesh.Add(&example{name: "foo"})
+	mesh.Add(&example{name: "foo"}).Wait()
 
 	mesh.Run()
 }

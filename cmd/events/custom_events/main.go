@@ -2,13 +2,14 @@ package main
 
 import (
 	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/internal/examplemesh"
 )
 
 func main() {
 	mesh := servicemesh.New()
 
-	mesh.Add(&sender{})
-	mesh.Add(&receiver{})
+	examplemesh.AddAndWait(mesh, &sender{}, &receiver{})
 
 	mesh.Run()
 }

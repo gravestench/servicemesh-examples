@@ -4,6 +4,8 @@ import (
 	"os"
 
 	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/internal/examplemesh"
 )
 
 func main() {
@@ -16,8 +18,7 @@ func main() {
 
 	mesh.SetLogDestination(logFile)
 
-	mesh.Add(&bubbleteaService{})
-	mesh.Add(&filePickerService{})
+	examplemesh.AddAndWait(mesh, &bubbleteaService{}, &filePickerService{})
 
 	mesh.Run()
 }

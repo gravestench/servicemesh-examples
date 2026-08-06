@@ -5,6 +5,7 @@ import (
 
 	"github.com/gravestench/servicemesh-examples/cmd/dependency_injection/service_dependencies/serviceA"
 	"github.com/gravestench/servicemesh-examples/cmd/dependency_injection/service_dependencies/serviceB"
+	"github.com/gravestench/servicemesh-examples/internal/examplemesh"
 )
 
 func main() {
@@ -23,8 +24,10 @@ func main() {
 	// both of these services implement servicemesh.HasDependencies, and they both
 	// will use the service mesh to find and assign a service that matches the
 	// interface they are looking for.
-	mesh.Add(serviceA.New("serviceA instance"))
-	mesh.Add(serviceB.New("serviceB instance"))
+	examplemesh.AddAndWait(mesh,
+		serviceA.New("serviceA instance"),
+		serviceB.New("serviceB instance"),
+	)
 
 	// when this runs, you will see the service mesh initiates the dependency
 	// resolution and the services will end up with their dependencies met.

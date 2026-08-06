@@ -18,8 +18,8 @@ var (
 // the following interfaces are used by the twitch integration service to
 // discover and invoke the methods for binding event handlers.
 
-// UsesEntireTwitchIntegration is an optional interface that represents a runtime
-// service capable of handling all Twitch integration events. By implementing
+// UsesEntireTwitchIntegration is an optional interface for a service capable of
+// handling all Twitch integration events. By implementing
 // this interface, the service can process events like connecting, whispers,
 // private messages, chat clearing, room state, user notices, user state, global
 // user state, notices, user joins/parts, reconnection, names list, pings, pongs,
@@ -48,7 +48,7 @@ type UsesEntireTwitchIntegration interface {
 }
 
 // OnConnect is an interface that represents a handler for the OnConnect event,
-// which is triggered when the runtime service connects to Twitch.
+// which is triggered when the integration connects to Twitch.
 type OnConnect interface {
 	OnTwitchConnect()
 }

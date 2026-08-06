@@ -26,7 +26,7 @@ func (s *Service) initRenderer() {
 	// this requires servicemesh.Run() to be passed into mainthread.Run
 	mainthread.Call(func() {
 		rl.SetTargetFPS(60)
-		rl.InitWindow(int32(screenWidth), int32(screenHeight), "runtime - raylib example")
+		rl.InitWindow(int32(screenWidth), int32(screenHeight), "servicemesh - raylib example")
 	})
 }
 

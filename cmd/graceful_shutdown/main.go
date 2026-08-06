@@ -4,22 +4,23 @@ import (
 	"time"
 
 	"github.com/gravestench/servicemesh"
+
+	"github.com/gravestench/servicemesh-examples/internal/examplemesh"
 )
 
 func main() {
 	mesh := servicemesh.New()
 
-	for _, service := range []servicemesh.Service{
+	services := []servicemesh.Service{
 		&example{name: "foo"},
 		&example{name: "bar"},
 		&example{name: "baz"},
-	} {
-		mesh.Add(service)
 	}
+	examplemesh.AddAndWait(mesh, services...)
 
 	go func() {
 		time.Sleep(time.Second * 3)
-		mesh.Shutdown()
+		mesh.Shutdown().Wait()
 	}()
 
 	mesh.Run()
